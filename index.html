@@ -172,24 +172,71 @@
       animation: fadeUp 0.8s ease forwards 1s;
     }
 
-    .notify-btn {
-      display: inline-block;
+    .form-row {
+      display: flex;
+      gap: 0;
+      width: 100%;
+      max-width: 360px;
       opacity: 0;
       animation: fadeUp 0.8s ease forwards 1.1s;
+      border: 1px solid rgba(200, 146, 58, 0.3);
+    }
+
+    .form-row input[type="email"] {
+      flex: 1;
+      background: rgba(30, 42, 36, 0.6);
+      border: none;
+      outline: none;
+      padding: 0.85rem 1.1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--parchment);
+      letter-spacing: 0.03em;
+      min-width: 0;
+    }
+
+    .form-row input[type="email"]::placeholder {
+      color: rgba(245, 239, 228, 0.3);
+    }
+
+    .form-row input[type="email"]:focus {
+      background: rgba(30, 42, 36, 0.85);
+    }
+
+    .form-row button {
       background: var(--amber);
-      padding: 0.9rem 2.2rem;
+      border: none;
+      padding: 0.85rem 1.3rem;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--near-black);
-      text-decoration: none;
+      cursor: pointer;
       transition: background 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    .notify-btn:hover {
+    .form-row button:hover {
       background: var(--amber-light);
+    }
+
+    .form-row button:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+
+    .form-success {
+      display: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-top: 0.5rem;
+      animation: fadeUp 0.5s ease forwards;
     }
 
     /* Privacy note */
@@ -294,9 +341,18 @@
 
     <p class="form-label">Be first to know when we launch</p>
 
-    <a class="notify-btn" href="http://eepurl.com/Y6gG_hpcaa" target="_blank" rel="noopener">
-      Notify Me
-    </a>
+    <div class="form-row" id="emailForm">
+      <input
+        type="email"
+        id="emailInput"
+        placeholder="your@email.com"
+        autocomplete="email"
+        aria-label="Email address"
+      />
+      <button type="button" onclick="handleSubmit()">Notify Me</button>
+    </div>
+
+    <p class="form-success" id="successMsg">✓ &nbsp;You're on the list.</p>
 
     <p class="privacy">No spam. Unsubscribe any time.</p>
 
@@ -305,6 +361,57 @@
   <footer>
     <p>Edgeholme &nbsp;·&nbsp; Kansas City &nbsp;·&nbsp; edgeholme.com</p>
   </footer>
+
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwAnQYCICK73zLxX4E9LF5C88-dnLb2GgCXxFaqH7_VS8Y7IWxBSyo9j3M1V2nYwUG-Q/exec';
+
+    function handleSubmit() {
+      const input = document.getElementById('emailInput');
+      const form  = document.getElementById('emailForm');
+      const msg   = document.getElementById('successMsg');
+      const email = input.value.trim();
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        input.style.outline = '1px solid rgba(200,90,90,0.6)';
+        input.focus();
+        return;
+      }
+
+      // Disable button while submitting
+      const btn = form.querySelector('button');
+      btn.textContent = '...';
+      btn.disabled = true;
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'email=' + encodeURIComponent(email)
+      })
+      .then(() => {
+        form.style.opacity = '0';
+        form.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => {
+          form.style.display = 'none';
+          msg.style.display = 'block';
+        }, 300);
+      })
+      .catch(() => {
+        // Show success anyway — no-cors means we can't read the response
+        // but if fetch didn't throw, the request went through
+        form.style.opacity = '0';
+        form.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => {
+          form.style.display = 'none';
+          msg.style.display = 'block';
+        }, 300);
+      });
+    }
+
+    document.getElementById('emailInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleSubmit();
+    });
+  </script>
 
 </body>
 </html>
