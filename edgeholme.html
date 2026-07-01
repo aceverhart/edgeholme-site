@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edgeholme — Coming Soon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --deep-green:   #1E2A24;
+      --near-black:   #141A16;
+      --parchment:    #F5EFE4;
+      --amber:        #C8923A;
+      --amber-light:  #E0AE6A;
+      --sage:         #8A9E8C;
+      --muted:        rgba(245, 239, 228, 0.5);
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      background-color: var(--near-black);
+      color: var(--parchment);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Ambient glow — the signature element */
+    .glow {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -58%);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(200, 146, 58, 0.18) 0%,
+        rgba(200, 146, 58, 0.07) 35%,
+        transparent 70%
+      );
+      animation: breathe 5s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes breathe {
+      0%, 100% { opacity: 0.7; transform: translate(-50%, -58%) scale(1); }
+      50%       { opacity: 1;   transform: translate(-50%, -58%) scale(1.08); }
+    }
+
+    /* Noise texture overlay for warmth */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.6;
+    }
+
+    /* Main content */
+    .wrap {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      max-width: 540px;
+      width: 100%;
+      gap: 0;
+    }
+
+    /* Eyebrow */
+    .eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    /* Logo mark — abstract lantern-shape in CSS */
+    .mark {
+      width: 36px;
+      height: 44px;
+      margin-bottom: 1.6rem;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.35s;
+    }
+
+    .mark svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Brand name */
+    .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 9vw, 5.2rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      color: var(--parchment);
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.5s;
+    }
+
+    /* Tagline */
+    .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--sage);
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+      margin-bottom: 3rem;
+      max-width: 360px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.7s;
+    }
+
+    /* Divider */
+    .divider {
+      width: 36px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--amber), transparent);
+      margin-bottom: 2.6rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.85s;
+    }
+
+    /* Email form */
+    .form-label {
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1s;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 0;
+      width: 100%;
+      max-width: 360px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1.1s;
+      border: 1px solid rgba(200, 146, 58, 0.3);
+    }
+
+    .form-row input[type="email"] {
+      flex: 1;
+      background: rgba(30, 42, 36, 0.6);
+      border: none;
+      outline: none;
+      padding: 0.85rem 1.1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--parchment);
+      letter-spacing: 0.03em;
+      min-width: 0;
+    }
+
+    .form-row input[type="email"]::placeholder {
+      color: rgba(245, 239, 228, 0.3);
+    }
+
+    .form-row input[type="email"]:focus {
+      background: rgba(30, 42, 36, 0.85);
+    }
+
+    .form-row button {
+      background: var(--amber);
+      border: none;
+      padding: 0.85rem 1.3rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--near-black);
+      cursor: pointer;
+      transition: background 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .form-row button:hover {
+      background: var(--amber-light);
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-top: 0.5rem;
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    /* Privacy note */
+    .privacy {
+      font-size: 0.65rem;
+      color: rgba(245, 239, 228, 0.28);
+      letter-spacing: 0.05em;
+      margin-top: 0.85rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1.25s;
+    }
+
+    /* Footer */
+    footer {
+      position: fixed;
+      bottom: 1.8rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 2;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1.4s;
+    }
+
+    footer p {
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(245, 239, 228, 0.22);
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .glow, * { animation: none !important; opacity: 1 !important; }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .glow {
+        width: 340px;
+        height: 340px;
+      }
+      .brand {
+        font-size: 3rem;
+        letter-spacing: 0.06em;
+      }
+      .form-row {
+        flex-direction: column;
+        border: none;
+      }
+      .form-row input[type="email"] {
+        border: 1px solid rgba(200, 146, 58, 0.3);
+      }
+      .form-row button {
+        border: 1px solid rgba(200, 146, 58, 0.3);
+        margin-top: 0.5rem;
+        width: 100%;
+        padding: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow"></div>
+
+  <main class="wrap">
+
+    <p class="eyebrow">Launching Late Summer 2025</p>
+
+    <!-- Abstract lantern mark -->
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- cap -->
+        <path d="M11 10 L18 4 L25 10" stroke="#C8923A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- body -->
+        <rect x="10" y="10" width="16" height="22" rx="1" stroke="#C8923A" stroke-width="1.2"/>
+        <!-- inner glow lines -->
+        <line x1="14" y1="15" x2="14" y2="27" stroke="#C8923A" stroke-width="0.6" stroke-opacity="0.5"/>
+        <line x1="18" y1="13" x2="18" y2="29" stroke="#E0AE6A" stroke-width="0.6" stroke-opacity="0.7"/>
+        <line x1="22" y1="15" x2="22" y2="27" stroke="#C8923A" stroke-width="0.6" stroke-opacity="0.5"/>
+        <!-- base -->
+        <path d="M9 32 L27 32" stroke="#C8923A" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- hang wire -->
+        <line x1="18" y1="4" x2="18" y2="0" stroke="#C8923A" stroke-width="1" stroke-opacity="0.6"/>
+        <!-- base plate -->
+        <path d="M12 32 L12 36 L24 36 L24 32" stroke="#C8923A" stroke-width="1" stroke-opacity="0.6"/>
+      </svg>
+    </div>
+
+    <h1 class="brand">Edgeholme</h1>
+
+    <p class="tagline">Outdoor lighting for the spaces where your home breathes.</p>
+
+    <div class="divider"></div>
+
+    <p class="form-label">Be first to know when we launch</p>
+
+    <div class="form-row" id="emailForm">
+      <input
+        type="email"
+        id="emailInput"
+        placeholder="your@email.com"
+        autocomplete="email"
+        aria-label="Email address"
+      />
+      <button type="button" onclick="handleSubmit()">Notify Me</button>
+    </div>
+
+    <p class="form-success" id="successMsg">✓ &nbsp;You're on the list.</p>
+
+    <p class="privacy">No spam. Unsubscribe any time.</p>
+
+  </main>
+
+  <footer>
+    <p>Edgeholme &nbsp;·&nbsp; Kansas City &nbsp;·&nbsp; edgeholme.com</p>
+  </footer>
+
+  <script>
+    function handleSubmit() {
+      const input = document.getElementById('emailInput');
+      const form  = document.getElementById('emailForm');
+      const msg   = document.getElementById('successMsg');
+      const email = input.value.trim();
+
+      // Basic validation
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        input.style.borderBottom = '1px solid rgba(200,90,90,0.6)';
+        input.focus();
+        return;
+      }
+
+      // Hide form, show success
+      form.style.opacity = '0';
+      form.style.transition = 'opacity 0.3s ease';
+      setTimeout(() => {
+        form.style.display = 'none';
+        msg.style.display = 'block';
+      }, 300);
+
+      // TODO: wire up to Mailchimp / ConvertKit / Klaviyo
+      // fetch('/subscribe', { method: 'POST', body: JSON.stringify({ email }) })
+      console.log('Email captured:', email);
+    }
+
+    // Allow Enter key
+    document.getElementById('emailInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleSubmit();
+    });
+  </script>
+
+</body>
+</html>
