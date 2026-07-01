@@ -172,67 +172,24 @@
       animation: fadeUp 0.8s ease forwards 1s;
     }
 
-    .form-row {
-      display: flex;
-      gap: 0;
-      width: 100%;
-      max-width: 360px;
+    .notify-btn {
+      display: inline-block;
       opacity: 0;
       animation: fadeUp 0.8s ease forwards 1.1s;
-      border: 1px solid rgba(200, 146, 58, 0.3);
-    }
-
-    .form-row input[type="email"] {
-      flex: 1;
-      background: rgba(30, 42, 36, 0.6);
-      border: none;
-      outline: none;
-      padding: 0.85rem 1.1rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 300;
-      color: var(--parchment);
-      letter-spacing: 0.03em;
-      min-width: 0;
-    }
-
-    .form-row input[type="email"]::placeholder {
-      color: rgba(245, 239, 228, 0.3);
-    }
-
-    .form-row input[type="email"]:focus {
-      background: rgba(30, 42, 36, 0.85);
-    }
-
-    .form-row button {
       background: var(--amber);
-      border: none;
-      padding: 0.85rem 1.3rem;
+      padding: 0.9rem 2.2rem;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--near-black);
-      cursor: pointer;
+      text-decoration: none;
       transition: background 0.2s ease;
-      white-space: nowrap;
-      flex-shrink: 0;
     }
 
-    .form-row button:hover {
+    .notify-btn:hover {
       background: var(--amber-light);
-    }
-
-    /* Success state */
-    .form-success {
-      display: none;
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-top: 0.5rem;
-      animation: fadeUp 0.5s ease forwards;
     }
 
     /* Privacy note */
@@ -337,18 +294,9 @@
 
     <p class="form-label">Be first to know when we launch</p>
 
-    <div class="form-row" id="emailForm">
-      <input
-        type="email"
-        id="emailInput"
-        placeholder="your@email.com"
-        autocomplete="email"
-        aria-label="Email address"
-      />
-      <button type="button" onclick="handleSubmit()">Notify Me</button>
-    </div>
-
-    <p class="form-success" id="successMsg">✓ &nbsp;You're on the list.</p>
+    <a class="notify-btn" href="http://eepurl.com/Y6gG_hpcaa" target="_blank" rel="noopener">
+      Notify Me
+    </a>
 
     <p class="privacy">No spam. Unsubscribe any time.</p>
 
@@ -357,39 +305,6 @@
   <footer>
     <p>Edgeholme &nbsp;·&nbsp; Kansas City &nbsp;·&nbsp; edgeholme.com</p>
   </footer>
-
-  <script>
-    function handleSubmit() {
-      const input = document.getElementById('emailInput');
-      const form  = document.getElementById('emailForm');
-      const msg   = document.getElementById('successMsg');
-      const email = input.value.trim();
-
-      // Basic validation
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        input.style.borderBottom = '1px solid rgba(200,90,90,0.6)';
-        input.focus();
-        return;
-      }
-
-      // Hide form, show success
-      form.style.opacity = '0';
-      form.style.transition = 'opacity 0.3s ease';
-      setTimeout(() => {
-        form.style.display = 'none';
-        msg.style.display = 'block';
-      }, 300);
-
-      // TODO: wire up to Mailchimp / ConvertKit / Klaviyo
-      // fetch('/subscribe', { method: 'POST', body: JSON.stringify({ email }) })
-      console.log('Email captured:', email);
-    }
-
-    // Allow Enter key
-    document.getElementById('emailInput').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') handleSubmit();
-    });
-  </script>
 
 </body>
 </html>
