@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Outdoor Lighting Journal | Edgeholme</title>
+  <meta name="description" content="Guides, sizing advice, and design thinking for outdoor architectural lighting. From fixture selection to installation best practices." />
+  <meta property="og:title" content="Outdoor Lighting Journal | Edgeholme" />
+  <meta property="og:description" content="Guides, sizing advice, and design thinking for outdoor architectural lighting." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://edgeholme.com/blog/" />
+  <link rel="canonical" href="https://edgeholme.com/blog/" />
+  <link rel="stylesheet" href="/src/css/main.css" />
+  <style>
+    .blog-grid {
+      display: grid;
+      gap: 3rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .blog-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .blog-card { display: flex; flex-direction: column; }
+    .blog-card__image {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--parchment);
+      margin-bottom: 1.25rem;
+    }
+    .blog-card__image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s var(--ease-out);
+    }
+    .blog-card:hover .blog-card__image img { transform: scale(1.04); }
+    .blog-card__meta {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 0.6rem;
+    }
+    .blog-card__title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+      color: var(--ink);
+      transition: color 0.2s ease;
+    }
+    .blog-card:hover .blog-card__title { color: var(--amber); }
+    .blog-card__excerpt {
+      font-size: 0.85rem;
+      color: var(--stone);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+    .blog-card__read {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCR7EM7D6X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CCR7EM7D6X');
+  </script>
+</head>
+<body>
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">Edgeholme</a>
+      <ul class="nav__links" role="list">
+        <li><a href="/" class="nav__link">Home</a></li>
+        <li><a href="/shop/" class="nav__link">Shop</a></li>
+        <li><a href="/trade/" class="nav__link">Trade</a></li>
+        <li><a href="/about/" class="nav__link">About</a></li>
+        <li><a href="/contact/" class="nav__link">Contact</a></li>
+      </ul>
+      <div class="nav__icons">
+        <button class="nav__icon" aria-label="Search"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></button>
+        <button class="nav__icon" aria-label="Account"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+        <button class="nav__icon" aria-label="Cart"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></button>
+      </div>
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav__mobile">
+    <a href="/" class="nav__link">Home</a>
+    <a href="/shop/" class="nav__link">Shop</a>
+    <a href="/trade/" class="nav__link">Trade</a>
+    <a href="/about/" class="nav__link">About</a>
+    <a href="/contact/" class="nav__link">Contact</a>
+  </div>
+
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <p class="eyebrow">From Edgeholme</p>
+        <div class="divider"></div>
+        <h1 class="display-lg">The Journal</h1>
+        <p class="body-lg" style="margin-top: 1rem; max-width: 500px;">
+          Sizing guides, design thinking, and installation advice for outdoor architectural lighting.
+        </p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="blog-grid">
+
+          <!-- BLOG CARD — repeat this block for each post -->
+          <article class="blog-card fade-up">
+            <a href="/blog/what-size-outdoor-wall-sconce-for-front-door/" class="blog-card__image">
+              <img src="https://raw.githubusercontent.com/aceverhart/edgeholme-site/main/assets/images/Arden_on_Front_of_House.png" alt="Outdoor wall sconces flanking a modern front door" loading="lazy" />
+            </a>
+            <div class="blog-card__meta">Design Guide &nbsp;·&nbsp; August 2026</div>
+            <a href="/blog/what-size-outdoor-wall-sconce-for-front-door/">
+              <h2 class="blog-card__title">What Size Outdoor Wall Sconce Should Go on the Sides of Your Front Door?</h2>
+            </a>
+            <p class="blog-card__excerpt">The most common mistake in exterior lighting is choosing a fixture that's too small. Here's how to size wall sconces correctly for front doors and garage doors.</p>
+            <a href="/blog/what-size-outdoor-wall-sconce-for-front-door/" class="blog-card__read">Read Article →</a>
+          </article>
+          <!-- END BLOG CARD -->
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-name">Edgeholme</div>
+          <p class="footer__tagline">Architectural outdoor lighting for homes that value simplicity, consistency, and timeless design.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" aria-label="Pinterest"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.23-5.22 1.23-5.22s-.32-.63-.32-1.56c0-1.46.85-2.56 1.9-2.56.9 0 1.33.67 1.33 1.48 0 .9-.58 2.26-.87 3.52-.25 1.05.52 1.9 1.54 1.9 1.85 0 3.28-1.95 3.28-4.77 0-2.49-1.79-4.24-4.34-4.24-2.96 0-4.69 2.22-4.69 4.51 0 .89.34 1.85.77 2.37.08.1.09.19.07.29-.08.32-.25 1.05-.28 1.2-.04.19-.14.23-.33.14-1.25-.58-2.03-2.42-2.03-3.89 0-3.15 2.29-6.05 6.61-6.05 3.47 0 6.16 2.47 6.16 5.77 0 3.44-2.17 6.21-5.18 6.21-1.01 0-1.97-.53-2.3-1.15l-.62 2.33c-.23.87-.84 1.96-1.25 2.62.94.29 1.94.45 2.97.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__heading">Shop</div>
+          <ul class="footer__links">
+            <li><a href="/shop/" class="footer__link">All Products</a></li>
+            <li><a href="/shop/arden/" class="footer__link">Arden Wall Sconce</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading">Company</div>
+          <ul class="footer__links">
+            <li><a href="/about/" class="footer__link">About</a></li>
+            <li><a href="/trade/" class="footer__link">Trade Program</a></li>
+            <li><a href="/blog/" class="footer__link">Journal</a></li>
+            <li><a href="/contact/" class="footer__link">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading">Stay in Touch</div>
+          <form class="newsletter-form js-newsletter-form" style="flex-direction: column;" novalidate>
+            <input type="email" placeholder="your@email.com" aria-label="Email" required style="border-radius: var(--radius-sm); border-right: 1px solid rgba(250,250,248,0.15); margin-bottom: 0.5rem;" />
+            <button type="submit" style="border-radius: var(--radius-sm);">Subscribe</button>
+          </form>
+          <div class="form-success" style="margin-top: 0.5rem; font-size: 0.75rem; padding: 0.75rem 1rem;">✓ You're on the list.</div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 Edgeholme. All rights reserved.</p>
+        <div class="footer__legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/src/js/main.js"></script>
+</body>
+</html>
