@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /founding-trade/
+
+Sitemap: https://edgeholme.com/sitemap.xml
