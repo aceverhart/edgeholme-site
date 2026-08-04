@@ -67,6 +67,14 @@
     .inquiry-panel { display: none; }
     .inquiry-panel.active { display: block; }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCR7EM7D6X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CCR7EM7D6X');
+  </script>
 </head>
 <body>
 
@@ -153,7 +161,7 @@
             </div>
 
             <div class="inquiry-panel active" id="panel-general">
-              <form class="js-trade-form" novalidate>
+              <form class="js-contact-form" novalidate>
                 <div class="form-grid form-grid--2" style="gap: 1.25rem; margin-bottom: 1.25rem;">
                   <div class="form-group">
                     <label class="form-label" for="g-name">Name *</label>
@@ -178,7 +186,7 @@
             </div>
 
             <div class="inquiry-panel" id="panel-trade">
-              <form class="js-trade-form" novalidate>
+              <form class="js-contact-form" novalidate>
                 <div class="form-grid form-grid--2" style="gap: 1.25rem; margin-bottom: 1.25rem;">
                   <div class="form-group">
                     <label class="form-label" for="t-name">Name *</label>
@@ -218,7 +226,7 @@
             </div>
 
             <div class="inquiry-panel" id="panel-support">
-              <form class="js-trade-form" novalidate>
+              <form class="js-contact-form" novalidate>
                 <div class="form-grid form-grid--2" style="gap: 1.25rem; margin-bottom: 1.25rem;">
                   <div class="form-group">
                     <label class="form-label" for="s-name">Name *</label>
@@ -236,9 +244,9 @@
                     <label class="form-label" for="s-product">Product</label>
                     <select class="form-select" id="s-product" name="product">
                       <option value="" disabled selected>Select product</option>
-                      <option>Wall Sconce 24"</option>
-                      <option>Wall Sconce 36"</option>
-                      <option>Wall Sconce 48"</option>
+                      <option>Arden 24"</option>
+                      <option>Arden 36"</option>
+                      <option>Arden 48"</option>
                     </select>
                   </div>
                 </div>
@@ -273,9 +281,9 @@
           <div class="footer__heading">Shop</div>
           <ul class="footer__links">
             <li><a href="/shop/" class="footer__link">All Products</a></li>
-            <li><a href="/shop/wall-sconce-24/" class="footer__link">Wall Sconce 24"</a></li>
-            <li><a href="/shop/wall-sconce-36/" class="footer__link">Wall Sconce 36"</a></li>
-            <li><a href="/shop/wall-sconce-48/" class="footer__link">Wall Sconce 48"</a></li>
+            <li><a href="/shop/arden/?size=24" class="footer__link">Arden 24"</a></li>
+            <li><a href="/shop/arden/?size=36" class="footer__link">Arden 36"</a></li>
+            <li><a href="/shop/arden/?size=48" class="footer__link">Arden 48"</a></li>
           </ul>
         </div>
         <div>
